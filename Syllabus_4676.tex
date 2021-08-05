@@ -1,0 +1,408 @@
+\documentclass[11pt]{article}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          				PACKAGES			              	  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Sets margins
+\usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry} % Document margins
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+%% additional packages
+\usepackage{blindtext}
+\usepackage{pdflscape}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx,color,thumbpdf}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xurl}
+\usepackage[stable]{footmisc}
+\usepackage{comment} %to comment
+\usepackage{background}
+\usepackage{threeparttable}
+\usepackage{float} 
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{indentfirst} % indents first paragraph after a section tag
+
+\usetikzlibrary{shapes,decorations,arrows,calc,arrows.meta,fit,positioning}
+\tikzset{
+    -Latex,auto,node distance =1 cm and 1 cm,semithick,
+    state/.style ={ellipse, draw, minimum width = 0.7 cm},
+    point/.style = {circle, draw, inner sep=0.04cm,fill,node contents={}},
+    bidirected/.style={Latex-Latex,dashed},
+    el/.style = {inner sep=2pt, align=left, sloped}
+}
+
+\renewcommand{\headrulewidth}{0pt}
+
+%% markup commands for code/software
+\let\code=\texttt
+\let\pkg=\textbf
+\let\proglang=\textsf
+\newcommand{\file}[1]{`\code{#1}'}
+\newcommand{\email}[1]{\href{mailto:#1}{\normalfont\texttt{#1}}}
+\urlstyle{same}
+
+\usepackage{blindtext,calc}
+
+\newlength\mytopmargin
+\newsavebox{\headbox}\savebox{\headbox}{
+%\includegraphics[width=2in]{logo.pdf}
+\begin{tabular}{p{5.5cm} p{9cm}}
+	\vspace{0.6cm} 
+	% Logo Universidad
+	\includegraphics[scale = 0.4, viewport = 50 0 500 200]{logo.pdf}
+	&
+	% Datos del Curso 
+	\vspace{0.5cm}
+	\centering
+	\textbf{Big Data and Machine Learning \\ for Applied Economics
+} \\
+	%\vspace{0.2cm}
+	ECON 4676 \\
+	%\vspace{0.2cm}
+	Ignacio Sarmiento-Barbieri \\
+	\textbf{2021-2} \\
+	
+\end{tabular}
+
+}
+\setlength{\mytopmargin}{\totalheightof{\usebox{\headbox}}+2cm}
+\geometry{verbose,
+          tmargin=\mytopmargin,
+          headheight=1.1\mytopmargin}
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[C]{\usebox\headbox}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\usetikzlibrary{calc}
+
+\SetBgScale{1}
+\SetBgAngle{0}
+\SetBgColor{black}
+\SetBgContents{
+\begin{tikzpicture}[overlay,remember picture]
+    \draw [line width=1pt]
+        ($ (current page.north west) + (1cm,-1cm) $)
+        rectangle
+        ($ (current page.south east) + (-1cm,1cm) $);
+\end{tikzpicture}
+}
+
+
+
+
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+
+\begin{document}
+
+\section{Profesores y horarios} 
+
+{\bf Profesor}: Ignacio Sarmiento-Barbieri (\href{mailto:i.sarmiento@uniandes.edu.co}{i.sarmiento@uniandes.edu.co})
+\begin{itemize}
+  \item Horario Clase: Martes y Jueves, 2:00 p.m. – 3:15 p.m. (\href{}{Aula virtual Zoom})
+  \item Web del Curso: \url{https://github.com/ECON-4676-UNIANDES-Fall-2021}
+\item Horario de atención a estudiantes: Via Slack 
+\end{itemize}
+
+{\bf Profesor Complmentario}: Rafael Cano Polania (\href{mailto:r.cano@uniandes.edu.co}{r.cano@uniandes.edu.co})
+\begin{itemize}
+	\item Horario Clase: Viernes, 15:30 p.m. – 16:45 p.m. (\href{}{Aula virtual Zoom})
+	\item Horario de atención a estudiantes: Via Slack, Miércoles 6:30 a.m- 7:30 a.m
+\end{itemize}
+
+
+\subsection*{Cláusula de ajustes razonables}
+
+Si lo considera pertinente, siéntase en libertad de informar al profesor \underline{lo antes posible} {\bf si usted tiene alguna condición, visible o invisible}, por la cual requiera algún ajuste para estar en igualdad de condiciones con los y las demás estudiantes. Debido a las actuales circunstancias, las barreras de conectividad o acceso a los recursos tecnológicos indispensables para la clase son parte de las condiciones que pueden requerir ajustes. Por la misma razón, no necesitará presentar documentación para solicitar esos ajustes. 
+
+También lo invitamos a buscar asesoría y apoyo en la Coordinación de su programa, en la Decanatura de Estudiantes (\url{http://centrodeconsejeria.uniandes.edu.co}, Bloque Ñf, ext. 2207, 2230 y 4967, horario de atención L-V 8:00 a.m. a 5:00 p.m.) o en el Programa de Acción por la Igualdad y la Inclusión Social (PAIIS) de la Facultad de Derecho (\href{mailto:paiis@uniandes.edu.co}{paiis@uniandes.edu.co}). Si su solicitud se basa en dificultades de acceso a conectividad o tecnología, es particularmente importante que haga este contacto adicional para que pueda acceder a los recursos de apoyo que brinda la Universidad. 
+
+Se entiende por ajustes razonables todas ``las modificaciones y adaptaciones necesarias y adecuadas que no impongan una carga desproporcionada o indebida, cuando se requieran en un caso particular, para garantizar a las personas con discapacidad el goce o ejercicio, en igualdad de condiciones con las demás, de todos los derechos humanos y libertades fundamentales'' Convención sobre los Derechos de las personas con discapacidad, art.2.
+
+Si quiere más información sobre ajustes razonables, puede visitar \href{esta página de la DECA}{https://agora.uniandes.edu.co/que-son-los-ajustes-razonables/}. Y sobre la política de momentos difíciles, \href{esta otra}{https://agora.uniandes.edu.co/sabes-que-es-la-politica-de-momentos-dificiles/}.
+
+
+\subsection*{Cláusula de respeto por la diversidad y contra el acoso}
+
+Todos debemos respetar los derechos de quienes hacemos parte de esta comunidad académica. En esta comunidad consideramos inaceptable cualquier situación de acoso, acoso sexual, discriminación, matoneo, y/o amenaza.
+La persona que se sienta en alguna de estas situaciones puede denunciar su ocurrencia y buscar orientación y apoyo ante alguna de las siguientes instancias:
+\begin{itemize}
+\item El equipo pedagógico de este curso, la Coordinación o la Dirección del programa de Economía. 
+\item La Decanatura de Estudiantes (DECA, Ed. Ñf-Casita amarilla).
+\item La Ombudsperson (\href{mailto:ombudsperson@uniandes.edu.co}{ombudsperson@uniandes.edu.co}, Edificio RGA–Pedro Navas, Of. 201, ext. 5300 y 3933).
+\item El Comité MAAD (\href{mailto:lineamaad@uniandes.edu.co}{lineamaad@uniandes.edu.co}, \url{https://uniandes.edu.co/MAAD} o a la ext. 2707 o 2230). Si quieren mayor información, guía o necesitan activar el protocolo MAAD pueden acudir a Nancy García (\href{mailto:n.garcia@uniandes.edu.co}{n.garcia@uniandes.edu.co}) en la Facultad. Para mayor información sobre el protocolo MAAD, puede visitar esta página: \url{https://decanaturadeestudiantes.uniandes.edu.co/index.php/es/sobre-la-decanatura/827}
+\item Grupos de apoyo estudiantiles que pueden ofrecerle apoyo y acompañamiento: No Es Normal (\href{mailto:derechoygenero@uniandes.edu.co}{derechoygenero@uniandes.edu.co} o \url{https://www.facebook.com/noesnormaluniandes/?fref=ts}); Pares de Acompañamiento Contra el Acoso-PACA (\href{mailto:paca@uniandes.edu.co}{paca@uniandes.edu.co} o \url{https://www.facebook.com/PACA- 1475960596003814/?fref=ts}).
+\item Para mayor información sobre el protocolo MAAD, puede visitar esta página: \url{https://agora.uniandes.edu.co/wp-content/uploads/2020/09/ruta-maad.pdf}
+
+
+\end{itemize}
+
+
+\section{Introducción y descripción general del curso}
+
+El curso busca que los estudiantes sean capaces de organizar, relacionar, y analizar datos anárquicos y espontáneos de gran escala, tipo, y calidad para responder preguntas económicas. Problemas de predicción e inferencia, con especial énfasis en inferencia causal, atravesarán transversalmente al curso. Mediante una combinación de talleres, presentaciones, y un trabajo final grupal, los estudiantes adquirirán las herramientas estadísticas y computacionales necesarias para hacer uso de big data y machine learning en investigación empírica.
+
+Es pre-requisito haber cursado Microeconomía 3, Econometría 1 y 2. Se recomienda haber cursado Econometría Avanzada o equivalente. Se aconseja tener experiencia con programación en R o Python, pero no es requisito. ¡Estos programas (y todos) se aprenden utilizándolos! 
+
+
+
+\section{Objetivos y competencias del curso}
+
+
+El objetivo de este curso es introducir a los alumnos a un conjunto de herramientas estadísticas, matemáticas, y computacionales para abordar problemas de gran cantidad/tipos/calidad de datos (“large n"), y cantidad de variables (“large p"). Problemas de predicción e inferencia, con especial énfasis en inferencia causal, atravesarán transversalmente al curso. Se buscará también familiarizar a los alumnos con la literatura reciente que utiliza estas herramientas. 
+
+
+\subsection*{Competencias}
+
+\begin{itemize}
+\item Comprender las técnicas provenientes de la ciencia de datos, la ciencia computacional, y la estadística desde una visión de economistas 
+\item Ser capaz de contrastar distintas técnicas econométricas y su conveniencia para contestar preguntas económicas y sociales.
+\item Desarrollar habilidades técnicas para el manejo cuantitativo de datos que surgen de distintas fuentes: texto, geoespaciales, encuestas, paginas web, etc.
+\item Desarrollar la capacidad manejar, analizar y sintetizar bases de datos con gran numero de observaciones y variables para generar conclusiones y recomendaciones sobre preguntas relevantes a las ciencias sociales.
+\item Aprender a manejar con fluidez distintas herramientas computacionales.
+\item Capacidad de analizar críticamente los datos presentados, ya sean provenientes de textos académicos o de los ejercicios presentados en el cursado
+\item Trabajar y resolver situaciones en grupo 
+\item Habilidad de exponer y defender (en forma escrita y oral) el trabajo realizado 
+
+
+
+\end{itemize}
+
+\section{Organización del curso}
+
+\begin{table}[H]
+\centering
+\caption{Temario y Organización (sujeto a cambios)}
+\scriptsize
+\begin{tabular}{|p{1cm}|p{8cm}|p{4cm}|}
+\hline
+Semana & Temas de clase     & Actividades    \\ \hline                                                                                                                                                                                                                                
+1      & Introducción al curso. Propiedades Numericas de OLS. FWL   & \\ \hline
+2      & Computación de OLS; Maximum Likelihood; Optimización. Git y SQL. Programación en paralelo  & Problem Set 1\\ \hline
+3      & Estadística Bayesiana.          & \\ \hline
+4      & Estadística Bayesiana.           & Problem set 2           \\ \hline
+5      & Datos y Modelos Espaciales                                  & \\ \hline
+6      & Modelos espaciales. Introducción a Machine Learning.     & \\ \hline
+7      & Sobreajuste. Validación cruzada. Selección de modelos.   & Problem set 3 \\ \hline
+8      & Regularización (Lasso, Ridge).    &                                                              \\ \hline
+9      & Regularización in Econ (Belonni). Modelos de clasificación.   & Problem set 4    \\ \hline
+       & Receso    &  \\ \hline
+10     & Modelos de clasificación. Imbalanced learning.   & Entrega de propuesta escrita trabajo final        \\ \hline
+11     & Árboles de decisión (CARTs, Random Forest, Bagging y aplicaciones para inferencia causal) & \\ \hline
+12     & Boosting: XGboost, LightGBM  & Problem set  5                  \\ \hline
+13     & Aprendizaje no Supervisado. Modelos de clusterización y aplicaciones a texto. Texto como Datos   &  \\ \hline
+14     & Reducción de dimensión: PCA, Modelos de categorización de tópicos.  & Problem set 6  \\ \hline
+15     & Word Embeddings. Introducción a aprendizaje profundo. Redes neuronales. Imagenes como datos  &   \\ \hline
+16     & Presentaciones finales  &   \\ \hline
+17     & Semana de finales  &  Entrega proyecto final  \\ 
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\pagebreak
+
+
+
+
+
+
+\section{Metodología}
+La metodología del curso combina clases virtuales, talleres, y un proyecto final. La participación de los estudiantes es fundamental para sacar el mayor provecho del curso. La virtualidad impone nuevos desafíos y es importante mantenerse conectados para crear las sinergias que surgen de las interacciones humanas. A su vez, los estudiantes realizarán trabajos prácticos grupales para evaluar su aprendizaje. 
+
+El producto final de este curso es proyecto implementando los conceptos y herramientas aprendidas a un problema concreto. El proyecto puede estar orientado a la investigación o a la industria dependiendo los intereses del alumno
+
+%\textcolor{red}{Research, Replicate, or Deploy a product}
+
+
+
+
+\section{Criterios de evaluación} \label{sec:evaluacion}
+%\textcolor{red}{UPDATE}
+
+\begin{table}[H]
+\centering
+\caption{Puntajes}
+\scriptsize
+\begin{tabular}{lccc}
+\hline
+ \hline
+\multicolumn{2}{l}{}                       & Puntaje Individual & Puntaje Total \\
+\multicolumn{2}{l}{Participación}          &                    & 10\%          \\
+\multicolumn{2}{l}{Talleres}               & 10\%               & 60\%          \\
+\multicolumn{2}{l}{Trabajo Final} 		   &                    & 30\%          \\
+              & Primer Entrega             & 5\%                &               \\
+              & Presentaciones             & 10\%               &               \\
+               & Entrega Final            & 15\%               &               \\
+\multicolumn{2}{l}{Total}                  &                    & 100\%        \\
+\hline
+ \hline
+\end{tabular}
+\end{table}
+
+\begin{itemize}
+
+
+\item Participación. Si bien participación es la actividad con menos peso en la composición final, será el “tiebreaker" por el cual decidiré la nota final. Participación no incluye solamente la asistencia a clases, sino también actividades fuera de clase. Una vez registrados en el curso los estudiantes recibirán invitación al canal de Slack,  a GitHub, y a la nube. La participación será juzgada en función a la participación en las discusiones, en los trabajos grupales, de las interacciones en el canal de Slack, el aprovechamiento de la nube. Se espera que estudiantes encuentren al menos tres errores de tipeo o cualquier otro tipo y los arreglen a través de pull requests en GitHub.
+
+\item Talleres. Los estudiantes realizarán trabajos prácticos grupales para evaluar su aprendizaje. Los grupos no podrán superar los 3 miembros. Habrá 6 talleres durante el semestre. Se dedicarán al menos 6 clases para la discusión y presentación de los talleres. Los talleres serán entregados vía GitHub. Parte de nota de la participación saldrá de la evaluación de la historia del repositorio donde se verá la contribución de cada estudiante.
+
+\item Trabajo final.  La actividad estará dividida en 3 entregas. En la primera entrega los grupos entregaran una propuesta escrita donde se presenta la idea y como planean llevarla a cabo. En una segunda entrega donde se expondrán los avances y resultados. La entrega final será al concluir el curso que consolida todo el trabajo. 
+\end{itemize}
+
+
+
+
+\section{Notas definitivas, reclamos y fraude académico}
+\subsection*{Sistema de aproximación de notas definitiva}
+De acuerdo con el Artículo 51 del Reglamento General de Estudiantes de Pregrado, “Las calificaciones definitivas de las materias serán numéricas de uno cinco (1,5) a cinco (5,0), en unidades, décimas y centésimas.”
+En este curso se aproximará la nota a la centésima más cercana. Por ejemplo, si el cálculo del cómputo es 3.245, la nota final se aproximará a 3.25; si el resultado del cálculo es 2.994 la nota final será de 2.99
+
+
+\subsection*{Excusas}
+
+Los estudiantes que no presenten las actividades y evaluaciones del curso en la fecha establecida previamente recibirán una calificación de cero (0), a menos que justifiquen su ausencia ante el profesor dentro de un término no superior a ocho (8) días hábiles. Se consideran excusas válidas aquellas contempladas en el artículo 43 del Reglamento General de Estudiantes de Pregrado. Si la excusa presentada por el estudiante es válida, el profesor programará una evaluación o actividad supletoria en el transcurso de las dos semanas siguientes.
+
+\subsection*{Ausencias en días de trabajo en grupo (clase tipo X)}
+
+La asistencia a clase en los días donde hay trabajo en grupo es obligatoria. Si el estudiante se ausenta deberá presentar una excusa válida. Si no presenta una excusa válida su nota en la evaluación Tipo X se verá reducida. En particular su nota $\theta$ (ver página 5) de la actividad correspondiente al día de su ausencia se reducirá en 20 puntos por cada día de ausencia. Ver la sección anterior, “Excusas”, para la definición de excusa válida.
+
+\subsection*{Reclamos}
+
+De acuerdo con los artículos 64 y 65 del Reglamento General de Estudiantes de Pregrado:
+“Todo estudiante que desee formular un reclamo sobre las calificaciones de cualquier evaluación o sobre la nota definitiva del curso, deberá dirigirlo por escrito y debidamente sustentado al profesor responsable de la materia, dentro de los cuatro (4) días hábiles siguientes a aquel en que se dan a conocer las calificaciones en cuestión. El profesor dispone de cinco (5) días hábiles para resolver el reclamo formulado; vencido el término informará al estudiante la decisión correspondiente.”
+“Si el estudiante considera que la decisión no corresponde a los criterios de evaluación, podrá solicitar la designación de un segundo calificador mediante un escrito debidamente sustentado, dirigido al Consejo de Facultad o de Departamento, según el caso, dentro de los cuatro (4) días hábiles siguientes al conocimiento de la decisión. Si el Consejo encuentra fundada la solicitud, procederá a designar, solamente para tal efecto, un segundo calificador cuya decisión debidamente sustentada será definitiva e inmodificable. En ningún caso, el segundo calificador podrá desmejorar la nota inicialmente asignada por el profesor.”
+
+\subsection*{Fraude}
+Este curso se acoge a la reglamentación sobre faltas académicas y disciplinarias consignada en el capítulo 10 del Reglamento General de Estudiantes de Pregrado de la Universidad.
+El fraude se considera como una de las faltas más graves que se puedan cometer en la Academia. En una comunidad académica la discusión respetuosa e informada de las ideas propias y ajenas constituye la columna vertebral de su quehacer diario. No dar crédito a otros por sus ideas publicadas o no, o apropiarse de las ideas de otros, sean estos autores, profesores o compañeros, atenta directamente contra la esencia de la Academia. En consecuencia, en este curso, el fraude en cualquiera de sus formas, es considerado como una acción inaceptable.
+
+
+
+\section{Fechas Importantes}
+
+\begin{itemize}
+\item Inicio de clases: 9 de agosto.
+\item Semana de receso: 4-9 de octubre.  
+\item Fecha de entrega del 30\% de las notas en MiBanner: 15 de Octubre.
+\item Último día de clases: 4 de diciembre.
+\item Exámenes finales (solo para cursos con varias secciones y exámenes conjuntos): 6-11 de diciembre.
+\item Último día para solicitar retiros: 17 de diciembre 6 p.m.
+\item Último día para subir notas finales en MiBanner: 16 de diciembre. 
+
+
+\end{itemize}
+
+
+\section{Virtualidad} \label{sec:virtualidad}
+
+Debido a la coyuntura actual de la pandemia las clases del curso serán virtuales. En el curso tendremos las siguientes pautas respecto a la virtualidad. Estas pautas buscan promover el respeto, la construcción de comunidad y la conexión humana entre estudiantes y profesores.
+
+\begin{itemize}
+\item Las clases se llevarán a cabo en Zoom.
+\item Las clases virtuales serán sincrónicas.
+\item Los estudiantes deben tener el micrófono en silencio. Para participar en clase por favor levantar la mano antes.
+\item Los estudiantes pueden usar libremente el chat.
+\item Prender la cámara durante clase es obligatorio. Si en alguna sesión el estudiante no puede usar la cámara, deberá escribir un correo a sus profesores explicando por qué no pudo prender la cámara y qué está haciendo para solucionar la situación.
+\item Grabaremos las clases donde el profesor magistral presente material que después será evaluado. La grabación de la sesión se publicará en la página del curso.
+\end{itemize}
+
+\section{Política de Momentos difíciles}
+
+Todas las personas pueden pasar por un momento difícil que de alguna manera pueda afectar nuestra vida en la Universidad. Pueden ser problemas en casa, con la pareja, incluso estrés por esta u otra materia. Si usted siente que está pasando por un momento complicado, {\bf sin importar el motivo}, siéntase con la tranquilidad de hablar con la profesora para pedir tiempo o apoyo. Ningún trabajo o entrega puede sobrepasar su salud mental y física. Su bienestar es lo más importante.
+
+
+\section{Bibliografía (sujeta a cambios)}
+\begin{itemize}
+\item Albouy, D., Christensen, P., \& Sarmiento-Barbieri, I. (2020). Unlocking amenities: Estimating public good complementarity. Journal of Public Economics, 182, 104110.
+\item Anselin, L. (1982). A note on small sample properties of estimators in a first-order spatial autoregressive model. Environment and Planning A, 14(8), 1023-1030.
+\item Anselin, Luc, \& Anil K Bera. 1998. “Spatial Dependence in Linear Regression Models with an Introduction to Spatial Econometrics.” Statistics Textbooks and Monographs 155. MARCEL DEKKER AG: 237–90.
+\item Arbia, G. (2014). A primer for spatial econometrics with applications in R. Palgrave Macmillan.
+\item Ash, E., Chen, D. L., \& Ornaghi, A. (2020). Stereotypes in High-Stakes Decisions: Evidence from US Circuit Courts (No. 1256). University of Warwick, Department of Economics.
+\item Aston Zhang, Zachary C. Lipton, Mu Li, and Alexander J. Smola (2020) Dive into Deep Learning. Release 0.15.1.
+\item Athey, S., \& Imbens, G. (2016). Recursive partitioning for heterogeneous causal effects. Proceedings of the National Academy of Sciences, 113(27), 7353-7360.
+\item Athey, S., \& Imbens, G. W. (2019). Machine learning methods that economists should know about. Annual Review of Economics, 11, 685-725.
+\item Belloni, A., Chernozhukov, V., \& Hansen, C. (2014). High-dimensional methods and inference on structural and treatment effects. Journal of Economic Perspectives, 28(2), 29-50.
+\item Belloni, A., Chernozhukov, V., \& Hansen, C. (2014). Inference on treatment effects after selection among high-dimensional controls. The Review of Economic Studies, 81(2), 608-650.
+\item Bivand, R. S.,  \& Pebesma, E. J. (2020). Spatial Data Science (Chapter 8)
+\item Bivand, R. S., Gómez-Rubio, V., \& Pebesma, E. J. (2008). Applied spatial data analysis with R (Vol. 747248717, pp. 237-268). New York: Springer.
+\item Blei, D. M., Ng, A. Y., \& Jordan, M. I. (2003). Latent dirichlet allocation. Journal of machine Learning research, 3(Jan), 993-1022.
+\item Blumenstock, J., Cadamuro, G., \& On, R. (2015). Predicting poverty and wealth from mobile phone metadata. Science, 350(6264), 1073-1076.
+\item Bolukbasi, T., Chang, K. W., Zou, J. Y., Saligrama, V., \& Kalai, A. T. (2016). Man is to computer programmer as woman is to homemaker? debiasing word embeddings. In Advances in neural information processing systems (pp. 4349-4357).
+\item Breiman, L. (2001). “Random Forests”. In: Machine Learning. ISSN: 1098-6596. DOI: 10.1017/CBO9781107415324.004. eprint: arXiv:1011.1669v3.
+\item Carneiro, A., Guimarães, P., \& Portugal, P. (2012). Real Wages and the Business Cycle: Accounting for Worker, Firm, and Job Title Heterogeneity. American Economic Journal: Macroeconomics, 4 (2): 133-52.
+\item Casella, G. (1985). An introduction to empirical Bayes data analysis. The American Statistician, 39(2), 83-87.
+\item Casella, G., \& Berger, R. L. (2002). Statistical inference (Vol. 2, pp. 337-472). Pacific Grove, CA: Duxbury.
+\item Charpentier, Arthur (2018). Classification from scratch, boosting.
+\item Chen, T., \& Guestrin, C. (2016, August). Xgboost: A scalable tree boosting system. In Proceedings of the 22nd acm sigkdd international conference on knowledge discovery and data mining (pp. 785-794).
+\item Chen, T., He, T., \& Benesty, M. (2018). XGBoost Documentation.
+\item Chernozhukov, V.,  Hansen, C., \& Spindler, M (2016). hdm: High-Dimensional Metrics R Journal, 8(2), 185-199.
+\item Chetty, R., \& Hendren, N. (2018). The impacts of neighborhoods on intergenerational mobility II: County-level estimates. The Quarterly Journal of Economics, 133(3), 1163-1228.
+\item Christensen, P.,  Sarmiento-Barbieri, I., Timmins C. (2020). Housing Discrimination and the Pollution Exposure Gap in the United States. NBER WP No. 26805
+\item Clark, M (2018). An Introduction to Text Processing and Analysis with R.Rstudio (2020). Tutorial TensorFlow
+\item Constantine, P. G., \& Gleich, D. F. (2011, June). Tall and skinny QR factorizations in MapReduce architectures. In Proceedings of the second international workshop on MapReduce and its applications (pp. 43-50).
+\item Davidson, R., \& MacKinnon, J. G. (2004). Econometric theory and methods (Vol. 5). New York: Oxford University Press.
+\item Dean, J., \& Ghemawat, S. (2004). MapReduce: Simplified data processing on large clusters.
+\item Efron, B., \& Hastie, T. (2016). Computer age statistical inference (Vol. 5). Cambridge University Press.
+\item Einav, Liran, and Jonathan D. Levin. The data revolution and economic analysis. No. w19035. National Bureau of Economic Research, 2013.
+\item Friedman, J., Hastie, T., \& Tibshirani, R. (2001). The elements of statistical learning (Vol. 1, No. 10). New York: Springer series in statistics.
+\item Gentzkow, M., \& Shapiro, J. M. (2010). What drives media slant? Evidence from US daily newspapers. Econometrica, 78(1), 35-71.
+\item Goodfellow, I., Bengio, Y., Courville, A., \& Bengio, Y. (2016). Deep learning (Vol. 1, No. 2). Cambridge: MIT press.
+\item Green, D. P., \& Kern, H. L. (2012). Modeling heterogeneous treatment effects in survey experiments with Bayesian additive regression trees. Public opinion quarterly, 76(3), 491-511.
+\item Greene, W. H. (2003). Econometric analysis fifth edition. New Yersey: Prentice Hall.
+\item Gu, J., \& Koenker, R. (2017). Empirical Bayesball remixed: Empirical Bayes methods for longitudinal data. Journal of Applied Econometrics, 32(3), 575-599.
+\item Hayashi, F. (2000). Econometrics. 2000. Princeton University Press. Section, 1, 60-69.
+\item James, G., Witten, D., Hastie, T., \& Tibshirani, R. (2013). An introduction to statistical learning (Vol. 112, p. 18). New York: springer.
+\item Kasy M. (2019). Trees, forests, and causal trees. Mimeo.
+\item Koenker, R. (2013) Economics 508: Lecture 4. Model Selection and Fishing for Significance. Mimeo
+\item Kohavi, R. (1995). A study of cross-validation and bootstrap for accuracy estimation and model selection. In Ijcai (Vol. 14, No. 2, pp. 1137-1145).
+\item Kuhn, M. (2012). The caret package. R Foundation for Statistical Computing, Vienna, Austria.
+\item Lee, K., \& Braithwaite, J. (2020). High-Resolution Poverty Maps in Sub-Saharan Africa. arXiv preprint arXiv:2009.00544.
+\item Leo Breiman. Statistical modeling: The two cultures (with comments and a rejoinder by the author). Statistical Science, 16(3):199–231, 2001b.
+\item Lovelace, R., Nowosad, J., \& Muenchow, J. (2019). Geocomputation with R. CRC Press. (Chapters 2 \& 6)
+\item Lundberg, I (2017). Causal forests. A tutorial in high dimensional causal inference. Mimeo
+\item McMillen, D., Sarmiento-Barbieri, I., \& Singh, R. (2019). Do more eyes on the street reduce Crime? Evidence from Chicagos safe passage program. Journal of urban economics, 110, 1-25.
+\item Mullainathan, S. and Spiess, J., 2017. Machine learning: an applied econometric approach. Journal of Economic Perspectives, 31(2), pp.87-106.
+\item Murphy, K. P. (2012). Machine learning: a probabilistic perspective. MIT press.
+\item Robinson, D. (2017). Introduction to Empirical Bayes: Examples from Baseball Statistics. 2017.
+\item Rstudio (2020). Tutorial TensorFlow
+\item Ruud, P. A. (2000). An introduction to classical econometric theory. OUP Catalogue
+\item Sarmiento-Barbieri, I. (2016). An Introduction to Spatial Econometrics in R.
+\item Sosa Escudero, W. (2019). Big Data. Siglo Veintiuno Editores
+\item Taddy, M. (2019). Business data science: Combining machine learning and economics to optimize, automate, and accelerate business decisions. McGraw Hill Professional.
+\item Tobler, WR. 1979. “Cellular Geography.” In Philosophy in Geography, 379–86. Springer.
+\item Van Loan, C. F., Golub, G. H. (2012). Matrix Computations. United States: Johns Hopkins University Press.
+\item Varian, Hal R. Big Data: New Tricks for Econometrics. Journal of Economic Perspectives 28, no. 2 (2014): 3-28.
+\item Voigt, R., Camp, N. P., Prabhakaran, V., Hamilton, W. L., Hetey, R. C., Griffiths, C. M., ... \& Eberhardt, J. L. (2017). Language from police body camera footage shows racial disparities in officer respect. Proceedings of the National Academy of Sciences, 114(25), 6521-6526.
+\item Wasser, L. GIS With R: Projected vs Geographic Coordinate Reference Systems Last Access September 10, 2020
+\item Zou, H. \& Hastie, T. (2005). Regularization and variable selection via the elastic net. Journal of the Royal StatisticalSociety, Series B.67: pp. 301–320
+
+
+\end{itemize}
+
+
+
+\end{document}
