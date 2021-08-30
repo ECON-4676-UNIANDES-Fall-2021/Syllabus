@@ -5,7 +5,7 @@
 ## 1. Horario de Clases 
 
 Las clases serán completamente virtuales:
-    - Teóricas: martes y jueves de 11:30 a 12:45. 
+    - Teóricas: martes y jueves de 14:00 a 15:15. 
     - Prácticas: viernes 15:30 p.m. – 16:45 p.m
 
 Las clases son via Zoom: https://uniandes-edu-co.zoom.us/j/81357439760
